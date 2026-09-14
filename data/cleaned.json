@@ -1,0 +1,19 @@
+{
+  "source": "UN World Population Prospects (2024 Revision)",
+  "unit": "Billion",
+  "raw_series": {
+    "2024": 8.16,
+    "2030": 8.52,
+    "2050": 9.71,
+    "2100": 10.18
+  },
+  "metrics": {
+    "mean_population": 9.14,
+    "cagr_2024_2100_percent": 0.291,
+    "period_growth_percent": {
+      "2024-2030": 4.41,
+      "2024-2050": 19.0,
+      "2024-2100": 24.75
+    }
+  }
+}
