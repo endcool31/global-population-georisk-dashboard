@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Population & Geopolitical Risk Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <div class="max-w-4xl mx-auto px-4 py-8 space-y-12">
+    
+    <!-- 1. 首頁 Landing -->
+    <header class="border-b border-slate-700 pb-6">
+      <span class="text-xs uppercase tracking-widest text-indigo-400 font-bold">FinTech & AI Applications</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold mt-1">Global Population & Geopolitical Risk Dashboard</h1>
+      <p class="mt-3 text-slate-300 text-base italic">
+        「本研究主張：人口增長峰值推遲疊加關鍵地緣能源走廊失序，將在 2030–2050 年間構成雙重全球宏觀風險。」
+      </p>
+      <p class="mt-2 text-sm text-slate-400">分析師 / 作者：[你的姓名 / 學號]</p>
+    </header>
+
+    <!-- 2. 世界人口預測區塊 -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-indigo-300 border-l-4 border-indigo-500 pl-3">世界人口預測 (2024–2100)</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        <div class="bg-slate-800 p-3 rounded-lg"><div class="text-xs text-slate-400">2024 基準</div><div class="text-xl font-bold text-white">8.16 億</div></div>
+        <div class="bg-slate-800 p-3 rounded-lg"><div class="text-xs text-slate-400">2030 預測</div><div class="text-xl font-bold text-white">8.52 億</div></div>
+        <div class="bg-slate-800 p-3 rounded-lg"><div class="text-xs text-slate-400">2050 預測</div><div class="text-xl font-bold text-white">9.71 億</div></div>
+        <div class="bg-slate-800 p-3 rounded-lg"><div class="text-xs text-slate-400">2100 預測</div><div class="text-xl font-bold text-white">10.18 億</div></div>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg">
+        <canvas id="popChart" height="120"></canvas>
+        <p class="text-xs text-slate-400 mt-2 text-right">資料來源：UN World Population Prospects (2024 Revision)</p>
+      </div>
+      <div id="metrics-display" class="text-xs bg-slate-800/60 p-3 rounded text-slate-300">
+        載入 Python 運算指標中...
+      </div>
+    </section>
+
+    <!-- 3. 伊朗地緣政治風險分析區塊 -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-indigo-300 border-l-4 border-indigo-500 pl-3">伊朗地緣政治風險矩陣 (Iran Risk Matrix)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm border-collapse bg-slate-800 rounded-lg">
+          <thead class="bg-slate-700/60 text-slate-300">
+            <tr>
+              <th class="p-3">風險因子</th>
+              <th class="p-3">機率</th>
+              <th class="p-3">影響程度</th>
+              <th class="p-3">資料來源</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-700">
+            <tr>
+              <td class="p-3 font-semibold">荷姆茲海峽封鎖風險</td>
+              <td class="p-3"><span class="bg-amber-900/60 text-amber-300 px-2 py-0.5 rounded text-xs">中</span></td>
+              <td class="p-3 text-red-400 font-medium">極高 (全球 20% 原油運輸)</td>
+              <td class="p-3 text-xs text-slate-400">EIA / S&P Global</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">核濃縮門檻突破與制裁反彈</td>
+              <td class="p-3"><span class="bg-red-900/60 text-red-300 px-2 py-0.5 rounded text-xs">高</span></td>
+              <td class="p-3 text-red-400 font-medium">高 (二級金融制裁升級)</td>
+              <td class="p-3 text-xs text-slate-400">IAEA Quarterly Report</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">代理人衝突外溢 (紅海/敘利亞)</td>
+              <td class="p-3"><span class="bg-red-900/60 text-red-300 px-2 py-0.5 rounded text-xs">高</span></td>
+              <td class="p-3 text-amber-300 font-medium">中至高 (供應鏈航運溢價)</td>
+              <td class="p-3 text-xs text-slate-400">CSIS / Reuters</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">國內通膨加劇引發內部政經動盪</td>
+              <td class="p-3"><span class="bg-amber-900/60 text-amber-300 px-2 py-0.5 rounded text-xs">中</span></td>
+              <td class="p-3 text-amber-300 font-medium">中 (原油出口產能受挫)</td>
+              <td class="p-3 text-xs text-slate-400">World Bank / IMF</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- 事實 vs 推論 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="bg-slate-800/80 p-3 rounded border-l-2 border-emerald-500">
+          <span class="font-bold text-emerald-400 block mb-1">【客觀事實資料】</span>
+          IAEA 記錄伊朗鈾濃縮豐度已達 60%；荷姆茲海峽每日流通約 2,000 萬桶石油；伊朗通膨率長期徘徊 40% 以上。
+        </div>
+        <div class="bg-slate-800/80 p-3 rounded border-l-2 border-amber-500">
+          <span class="font-bold text-amber-400 block mb-1">【分析推論】</span>
+          若軍事行動波及航運基礎設施，將引發布蘭特原油單季飆升 20–30%，進而阻礙主要央行降息進程。
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 方法論與驗證 -->
+    <section class="space-y-3 bg-slate-800/40 p-4 rounded-lg border border-slate-700 text-sm">
+      <h2 class="text-base font-bold text-indigo-300">方法論：AI 應用與交叉驗證 (Methodology)</h2>
+      <ul class="list-disc list-inside space-y-1 text-slate-300 text-xs sm:text-sm">
+        <li><strong>AI 使用角色：</strong>輔助生成資料清洗腳本框架、提煉風險矩陣草稿。不直接採用 AI 自行生成的統計數據。</li>
+        <li><strong>數據真實性校準：</strong>針對不同 LLM 回答人口數據分歧問題（如部分模型將 2022 年預估與 2024 年修訂版混用），以 <em>UN WPP 2024 Revision</em> 官方 PDF 數據表為單一真相來源（Single Source of Truth）。</li>
+        <li><strong>防幻覺措施：</strong>在 Prompt 中加上「僅輸出具備權威機構引註之事實，推論部分嚴格標註邏輯鏈條」，並手動比對 IAEA 與 EIA 官方通報。</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <script>
+    // 渲染 Chart.js
+    const ctx = document.getElementById('popChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['2024', '2030', '2050', '2100'],
+        datasets: [{
+          label: '全球預測人口 (十億)',
+          data: [8.16, 8.52, 9.71, 10.18],
+          borderColor: '#818cf8',
+          backgroundColor: 'rgba(129, 140, 248, 0.1)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: '#94a3b8' } } },
+        scales: {
+          x: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } },
+          y: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } }
+        }
+      }
+    });
+
+    // 讀取 cleaned.json
+    fetch('data/cleaned.json')
+      .then(res => res.json())
+      .then(data => {
+        const m = data.metrics;
+        document.getElementById('metrics-display').innerHTML = 
+          `<strong>Python 運算指標驗證：</strong>四期平均值 <strong>${m.mean_population} 億</strong> ｜ 2024-2100 年均複合成長率 (CAGR): <strong>${m.cagr_2024_2100_percent}%</strong> ｜ 2024-2100 總增長: <strong>${m.period_growth_percent['2024-2100']}%</strong>`;
+      })
+      .catch(() => {
+        document.getElementById('metrics-display').innerText = '載入中（本地測試請透過 http-server 啟動以讀取 JSON）';
+      });
+  </script>
+</body>
+</html>
